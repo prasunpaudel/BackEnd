@@ -66,12 +66,14 @@ class ProductController extends Controller
                 $product->photo = $time;
                 $product->catagory=$request->input('catagory');
                 $prduct->cost=$cost;
+                $product->status=$request->input('status');
                 $product->save();
             }
             else{
                 $product->title = $request->input('title');
                 $product->detail = $request->input('detail');
                 $product->catagory=$request->input('catagory');
+                $product->status=$request->input('status');
                 $product->cost=$request->input('cost');
                 $product->save();
             }

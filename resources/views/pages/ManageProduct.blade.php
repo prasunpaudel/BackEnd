@@ -45,7 +45,6 @@
                                         </thead>
                                         <tbody>
                                             @foreach($products as $pro)
-                                            @if($pro->status=='hide')
                                             <tr>
                                                 <td>
                                                         <div>
@@ -85,7 +84,6 @@
                                                     <a href="{{ route('getdeleteproduct',$pro->id)  }}"><button class="bg-info text-light btn-sm"><b><i class="material-icons">delete</i></b></button></a>
                                                 </td>
                                             </tr>
-                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>
