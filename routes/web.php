@@ -25,6 +25,7 @@ Route::get('/', [SiteController::class, 'getSite'])->name('getSite');
 Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
 Route::get('/carts', [SiteController::class, 'getCart'])->name('getCart');
 Route::get('/carts/delete/{cart}', [SiteController::class, 'getdeletecart'])->name('getdeletecart');
+Route::get('/checkout/{cart}', [SiteController::class, 'checkout'])->name('checkout');
 
 Route::get('/catagory', [CatagoryController::class, 'getAddCatagory'])->name('catagory');
 Route::post('/postAddCatagory',[CatagoryController::class,'postAddCatagory'])->name('postAddCatagory');

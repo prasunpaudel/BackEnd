@@ -41,11 +41,11 @@
             <nav class="navbar navbar-light bg-light justify-content-between">
                <div id="mySidenav" class="sidenav">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                  <a href="index.html">Home</a>
-                  <a href="products.html">Products</a>
-                  <a href="about.html">About</a>
-                  <a href="client.html">Client</a>
-                  <a href="contact.html">Contact</a>
+                  <a href="{{route('getSite')}}">Home</a>
+                  <a href="">Products</a>
+                  <a href="">About</a>
+                  <a href="">Client</a>
+                  <a href="">Contact</a>
                </div>
                <span class="toggle_icon" onclick="openNav()"><img src="{{asset('site/images/toggle-icon.png')}}"></span>
                <a class="logo" href="index.html"><img src="{{asset('site/images/logo.png')}}"></a></a>

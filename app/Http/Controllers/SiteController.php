@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use Session;
 
+
 class SiteController extends Controller
 {
     public function getSite(Request $request, Product $product) {
@@ -16,7 +17,7 @@ class SiteController extends Controller
     }
     public function getAddCart(Product $product){
         $code = Str::random(6);
-        $qty = 3;
+        $qty = 1;
         if(Session::get('cartcode')){
 
 
@@ -55,7 +56,25 @@ class SiteController extends Controller
         }
     }
     public function getdeletecart(Cart $cart){
-        $cart->delete();
-        return redirect()->route('getCart');
+        if(Session::get('cartcode')==$cart->code){
+            $cart->delete();
+            return redirect()->route('getCart');
+        }
+        else{
+            abort(404);
+        }
     }
+    public function checkout(Cart $cart){
+        if(Session::get('cartcode')==$cart->code){
+            $cartcode = Session::get('cartcode');
+            $data =[
+                'carts' => Cart::where('code', $cartcode)->get()
+            ];
+            return view('pages.checkout',$data);
+        }
+        else{
+            abort(404);
+        }
+    }
+    
 }
