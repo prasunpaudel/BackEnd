@@ -31,35 +31,6 @@
                                       </div>
                                     </div>
                                     <div class="col-md-3">
-                                      <label for="validationCustom04" class="form-label">State</label>
-                                      <select class="form-select" id="validationCustom04" name="State" required>
-                                        <option value="Province-1">Province-1</option>
-                                        <option value="Madesh">Madesh</option>
-                                        <option value="Bagmati">Bagmati</option>
-                                        <option value="Gandaki">Gandaki</option>
-                                        <option value="Lumbini">Lumbini</option>
-                                        <option value="Karnali">Karnali</option>
-                                        <option value="SudurPaschim">SudurPaschim</option>
-                                      </select>
-                                      <div class="invalid-feedback">
-                                        Please select a valid state.
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label for="validationCustom03" class="form-label">City</label>
-                                      <input type="text" class="form-control" id="validationCustom03" name="city" required>
-                                      <div class="invalid-feedback">
-                                        Please provide a valid city.
-                                      </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                      <label for="validationCustom05" class="form-label">Zip</label>
-                                      <input type="text" class="form-control" name="zipcode" id="validationCustom05" required>
-                                      <div class="invalid-feedback">
-                                        Please provide a valid zip.
-                                      </div>
-                                    </div>
-                                    <div class="cocl-md-3">
                                         <label for="validationCustom05" class="form-label">Payment Method</label> <br>
                                         <input type="radio" name="paymethod">
                                         <label for="validationCustom05" class="form-label" id="paymethod" value="esewa">eSewa</label>
@@ -74,12 +45,12 @@
                                 <div class="col-md-4 ">
                                     <strong><h3><b>Item OverViews</b></h3></strong> <br>
                                     <div class="d-flex">
-                                    @foreach ($carts as $tabledata)
-                                    @php
-                                             $productinfo = App\Models\Product::where('id', $tabledata->product_id)->first();   
-                                             @endphp
-                                                <img src="{{ asset('site/uploads/product/' . $productinfo->photo) }}" alt=""
-                                            width="100">
+                                    @foreach($carts as $cart)
+                                     @php
+                                      $productinfo = App\Models\Product::where('id', $cart->product_id)->limit(1)->first();
+                                        @endphp
+                                        <img src="/site/uploads/AddProduct/{{$productinfo->photo}}" height="100px" width="100px" style="padding: 30px;"><br><br>
+                                        {{$productinfo->title}}
                                             @endforeach
                                         </div>
                                     <strong><h3><b>Order Summary</b></h3></strong> <br>

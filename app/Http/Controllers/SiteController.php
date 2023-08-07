@@ -76,5 +76,8 @@ class SiteController extends Controller
             abort(404);
         }
     }
+    public function shipping(){
+        return view('pages.shipping');
+    }
     
 }
