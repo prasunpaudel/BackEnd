@@ -13,10 +13,13 @@
     <label for="inputEmail4" class="form-label">Email</label>
     <input type="email" class="form-control" id="inputEmail4">
   </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Password</label>
-    <input type="password" class="form-control" id="inputPassword4">
-  </div>
+  <div class="col-md-12">
+                                      <label for="validationCustom04" class="form-label">Status</label><br>
+                                      <select class="form-select" id="validationCustom04" name="Status" required>
+                                      <option value="show">show</option>
+                                        <option value="hide">Hide</option>
+                                      </select>
+                                    </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">Address</label>
     <input type="text" class="form-control" id="inputAddress" placeholder="street no.">
@@ -38,8 +41,12 @@
                                     <br><br><br>
   <div class="col-md-3">
     <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity">
+    <input type="text" class="form-control" id="inputCity" style="width:180px;">
   </div>
+
+  <div class="col-md-11" >
+    <label for="inputcharge" class="form-label">charge</label>
+    <input type="text" class="form-control" id="inputcharge" style="width:180px;">
   </div>
   <div class="col-md-2">
     <label for="inputZip" class="form-label">Zip</label>

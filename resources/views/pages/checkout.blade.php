@@ -1,27 +1,28 @@
 @extends('pages.template')
 @section('content')
+<div class="col-md-12 d-flex justify-content-center" style="padding:50px 0">
+    <br><br<h1>Carts</h1><br>
+</div>
 <div id="card" style="padding:50px 0">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <br /> <br />
-                 <br> <br>
-                <h3>Carts</h3><br>
+                
                 <form action="GET">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                                    <div class="col-md-4">
+                <div class="container ">
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-md-4">
+                                    <div class="col-md-10">
                                       <label for="validationCustom01" class="form-label">First name</label>
                                       <input type="text" class="form-control" id="validationCustom01"  name="firstname" required>
 
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-10">
                                       <label for="validationCustom02" class="form-label">Last name</label>
                                       <input type="text" class="form-control" id="validationCustom02" name="secondname" required>
 
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-10">
                                         <label for="validationCustom2" class="form-label">E-mail</label>
                                       <div class="input-group has-validation">
                                         <input type="mail" class="form-control" id="validationCustomUsername" name="email" aria-describedby="inputGroupPrepend" required>
@@ -30,7 +31,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <label for="validationCustom05" class="form-label">Payment Method</label> <br>
                                         <input type="radio" name="paymethod">
                                         <label for="validationCustom05" class="form-label" id="paymethod" value="esewa">eSewa</label>
@@ -42,7 +43,7 @@
                                       <button class=" btn btn-primary" type="submit">Submit form</button>
                                     </div>
                                 </div>
-                                <div class="col-md-4 ">
+                                <div class="col-md-8 ">
                                     <strong><h3><b>Item OverViews</b></h3></strong> <br>
                                     <div class="d-flex">
                                     @foreach($carts as $cart)

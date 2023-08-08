@@ -53,7 +53,7 @@
                   <div class="login_text">
                      <ul>
                         <li><a href="#"><img src="{{asset('site/images/user-icon.png')}}"></a></li>
-                        <li><a href="#"><img src="{{asset('site/images/bag-icon.png')}}"></a></li>
+                        <li><a href="{{ route('shopping')  }}"><img src="{{asset('site/images/bag-icon.png')}}"></a></li>
                         <li><a href="#"><img src="{{asset('site/images/search-icon.png')}}"></a></li>
                      </ul>
                   </div>

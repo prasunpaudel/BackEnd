@@ -79,5 +79,8 @@ class SiteController extends Controller
     public function shipping(){
         return view('pages.shipping');
     }
+    public function shopping(){
+        return redirect()->route('getCart');
+    }
     
 }

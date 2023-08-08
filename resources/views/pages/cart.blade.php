@@ -18,8 +18,8 @@
         <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-3 col-lg-3 col-xl-3">
-              <img src="/site/uploads/AddProduct/{{$productinfo->photo}}" class="image_1">
+              <div class="col-md-3 col-lg-3 col-xl-3 d-flex align-items-center" style="height:100px">
+              <img src="/site/uploads/AddProduct/{{$productinfo->photo}}" height="150px" width="150px" style="padding: 30px;">
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2">
                 <b>{{ $productinfo->title }}</b>

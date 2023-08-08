@@ -22,6 +22,7 @@ use App\Http\Controllers\SiteController;
 |
 */
 Route::get('/', [SiteController::class, 'getSite'])->name('getSite');
+Route::get('/shopping', [SiteController::class, 'shopping'])->name('shopping');
 Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
 Route::get('/carts', [SiteController::class, 'getCart'])->name('getCart');
 Route::get('/carts/delete/{cart}', [SiteController::class, 'getdeletecart'])->name('getdeletecart');
