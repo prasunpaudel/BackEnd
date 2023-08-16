@@ -10,6 +10,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocialmediaController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SiteController;
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,8 @@ Route::get('/shopping', [SiteController::class, 'shopping'])->name('shopping');
 Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
 Route::get('/carts', [SiteController::class, 'getCart'])->name('getCart');
 Route::get('/carts/delete/{cart}', [SiteController::class, 'getdeletecart'])->name('getdeletecart');
-Route::get('/checkout/{cart}', [SiteController::class, 'checkout'])->name('checkout');
-Route::get('/shipping', [SiteController::class, 'shipping'])->name('shipping');
+Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
+Route::post('/PostCheckout', [SiteController::class, 'PostCheckout'])->name('PostCheckout');
 
 Route::get('/catagory', [CatagoryController::class, 'getAddCatagory'])->name('catagory');
 Route::post('/postAddCatagory',[CatagoryController::class,'postAddCatagory'])->name('postAddCatagory');
@@ -59,6 +60,12 @@ Route::get('/manage/media/delete/{socialmedia}', [SocialmediaController::class, 
 Route::get('/manage/media/edit/{socialmedia}', [SocialmediaController::class, 'geteditmedia'])->name('geteditmedia');
 Route::post('/manage/media/edit/{socialmedia}', [SocialmediaController::class, 'posteditmedia'])->name('posteditmedia');
 
+Route::get('/shipping',[ShippingController::class,'AddShipping'])->name('AddShipping');
+Route::post('/postshipping',[ShippingController::class,'PostAddShipping'])->name('PostAddShipping');
+Route::get('/manage/shipping',[ShippingController::class,'ManageShipping'])->name('ManageShipping');
+Route::get('/manage/shipping/delete/{shipping}', [ShippingController::class, 'DeleteShipping'])->name('DeleteShipping');
+Route::get('/manage/shipping/edit/{shipping}', [ShippingController::class, 'EditShipping'])->name('EditShipping');
+Route::post('/manage/shipping/edit/{shipping}', [ShippingController::class, 'PostEditShipping'])->name('PostEditShipping');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -78,9 +85,6 @@ Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('aut
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('billing', function () {
-		return view('pages.billing');
-	})->name('billing');
 	Route::get('tables', function () {
 		return view('pages.tables');
 	})->name('tables');

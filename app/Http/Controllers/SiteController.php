@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Shipping;
 use Session;
 
 
 class SiteController extends Controller
+
 {
     public function getSite(Request $request, Product $product) {
         $import = ['products' => Product::where('status', 'show')->get()];
@@ -19,15 +21,15 @@ class SiteController extends Controller
         $code = Str::random(6);
         $qty = 1;
         if(Session::get('cartcode')){
-
-
-        $cart = New Cart;
-        $cart->product_id = $product->id;
-        $cart->qty = $qty;
-        $cart->cost = $product->cost;
-        $cart->totalcost = $product->cost*$qty;
-        $cart->code = Session::get('cartcode');
-        $cart->save();
+            
+            
+            $cart = New Cart;
+            $cart->product_id = $product->id;
+            $cart->qty = $qty;
+            $cart->cost = $product->cost;
+            $cart->totalcost = $product->cost*$qty;
+            $cart->code = Session::get('cartcode');
+            $cart->save();
         }
         else{
             $cart = New cart;
@@ -36,8 +38,8 @@ class SiteController extends Controller
             $cart->cost = $product->cost;
             $cart->totalcost = $product->cost*$qty;
             $cart->code = $code;
-            $cart->save();
             Session::put('cartcode', $code);
+            $cart->save();
         }
         return redirect()->route('getCart');
     }
@@ -55,6 +57,11 @@ class SiteController extends Controller
             abort(404);
         }
     }
+    
+    public function shopping(){
+        return redirect()->route('getCart');
+    }
+    
     public function getdeletecart(Cart $cart){
         if(Session::get('cartcode')==$cart->code){
             $cart->delete();
@@ -65,22 +72,23 @@ class SiteController extends Controller
         }
     }
     public function checkout(Cart $cart){
-        if(Session::get('cartcode')==$cart->code){
+        if(Session::get('cartcode')){
             $cartcode = Session::get('cartcode');
-            $data =[
-                'carts' => Cart::where('code', $cartcode)->get()
-            ];
-            return view('pages.checkout',$data);
+        $data =[
+            'carts' => Cart::where('code', $cartcode)->get()
+        ]; 
+        $shipping=[
+            'shippings'=>shipping::all()
+        ];
+        
+        return view('pages.checkout',$data ,$shipping);
         }
         else{
             abort(404);
         }
     }
-    public function shipping(){
-        return view('pages.shipping');
+    public function PostCheckout(){
+        dd('hello');
     }
-    public function shopping(){
-        return redirect()->route('getCart');
-    }
-    
+
 }

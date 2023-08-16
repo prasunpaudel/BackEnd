@@ -41,7 +41,7 @@
 
         <div class="card">
           <div class="card-body">
-            <a href="{{route('checkout',$cart)}}"><button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button></a>
+            <a href="{{route('checkout')}}"><button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button></a>
           </div>
         </div>
 

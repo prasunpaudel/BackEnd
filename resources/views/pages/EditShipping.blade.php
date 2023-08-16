@@ -21,7 +21,7 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h5 class="mb-1">
-                                Billing
+                                Edit Shipping
                             </h5>
                         </div>
                     </div>
@@ -53,22 +53,21 @@
                                     </div>
                                 </div>
                         @endif
-                        <form method='POST' action="{{route('PostAddShipping')}}" enctype="multipart/form-data">
+                        <form method='POST' action="{{route('PostEditShipping')}}" enctype="multipart/form-data">
                             {{-- enctype this is for upload photo --}}
                             @csrf
                             <div class="row">
-                                <div class="mb-3 col-md-9 " >
+                                <div class="mb-3 col-md-9">
                                     State
-                                    <input list="states" name="state" id="state">
-                                    <datalist id="states">
-                                            <option value="koshi">
-                                            <option value="madhehsh">
-                                            <option value="bagmati">
-                                            <option value="gandaki">
-                                            <option value="lumbini">
-                                            <option value="karnali">
-                                            <option value="sudurpaschim">
-                                    </datalist>
+                                    <select name="state" id="state">
+                                        <option value="koshi">Koshi</option>
+                                        <option value="madhehsh">Madhesh</option>
+                                        <option value="bagmati">Bagmati</option>
+                                        <option value="gandaki">Gandaki</option>
+                                        <option value="lumbini">Lumbini</option>
+                                        <option value="karnali">Karnali</option>
+                                        <option value="sudurpaschim">Sudurpashchim</option>
+                                      </select>
                                   </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Charge</label>

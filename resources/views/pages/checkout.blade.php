@@ -1,14 +1,14 @@
 @extends('pages.template')
 @section('content')
 <div class="col-md-12 d-flex justify-content-center" style="padding:50px 0">
-    <br><br<h1>Carts</h1><br>
+    <br><br><h1>Carts</h1><br>
 </div>
 <div id="card" style="padding:50px 0">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 
-                <form action="GET">
+                <form  method='POST' action="{{ route('PostCheckout') }}" >
                 <div class="container ">
                     <div class="d-flex justify-content-center row">
                         <div class="col-md-4">
@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="col-12 mt-2 ">
-                                      <button class=" btn btn-primary" type="submit">Submit form</button>
+                                     <button class=" btn btn-primary" type="submit">Order now</button>
                                     </div>
                                 </div>
                                 <div class="col-md-8 ">
@@ -56,47 +56,7 @@
                                         </div>
                                     <strong><h3><b>Order Summary</b></h3></strong> <br>
                                     <table>
-                                        <ul class="d-flex">
-                                            <div class="paytable col-8">
-                                                <div></div>
-                                                <div>SubTotal : </div>
-                                                <div>Shipping : </div>
-                                                <div>Estimated Tax: </div>
-                                                <div><strong>GrandTotal</strong> : </div>
-                                            </div>
-                                            <div class="paymentprice col-4">
-                                                @php
-                                                    $subtotal = 0; // Initialize the grand total variable
-                                                    $shippingCharge = 200;
-                                                    $taxPercentage = 0.20;
-                                                    $grandTotal = 0;
-                                                @endphp
-
-                                                 @foreach ($carts as $tabledata)
-                                                     @php
-                                                         $productinfo = App\Models\Product::where('id', $tabledata->product_id)->first();
-                                                             $itemCost = $tabledata->totalcost;
-                                                            $subtotal += $itemCost;
-                                                           
-                                                    @endphp
-
-                                                    @endforeach
-                                                    @php
-                                                     if ($subtotal > 1000) {
-                                                        $shippingCharge = 0;
-                                                     }
-                                                     $taxAmount = $subtotal * $taxPercentage;
-                                                     $grandTotal = $subtotal + $shippingCharge + $taxAmount;
-                                                    @endphp
-
-                                                    <div>{{ $subtotal }}</div>
-                                                    <div>{{ $shippingCharge}}</div>
-                                                    <div>{{$taxAmount}}</div>
-                                                    <div><strong>{{$grandTotal}}</strong></div>
-
-                                             </div>
-                                         </ul>
-
+                                           
                                     </table>
                                 </div>
                             </form>
