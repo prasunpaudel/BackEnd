@@ -11,7 +11,6 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocialmediaController;
 use App\Http\Controllers\ShippingController;
-use App\Http\Controllers\SiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,13 +21,6 @@ use App\Http\Controllers\SiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [SiteController::class, 'getSite'])->name('getSite');
-Route::get('/shopping', [SiteController::class, 'shopping'])->name('shopping');
-Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
-Route::get('/carts', [SiteController::class, 'getCart'])->name('getCart');
-Route::get('/carts/delete/{cart}', [SiteController::class, 'getdeletecart'])->name('getdeletecart');
-Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
-Route::post('/PostCheckout', [SiteController::class, 'PostCheckout'])->name('PostCheckout');
 
 Route::get('/catagory', [CatagoryController::class, 'getAddCatagory'])->name('catagory');
 Route::post('/postAddCatagory',[CatagoryController::class,'postAddCatagory'])->name('postAddCatagory');
