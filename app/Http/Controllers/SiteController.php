@@ -9,6 +9,8 @@ use App\Models\Cart;
 use App\Models\Shipping;
 use App\Models\Order;
 use Session;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 
 class SiteController extends Controller
@@ -116,12 +118,43 @@ class SiteController extends Controller
                 $order->taxAmount = $taxAmount;
                 $order->grandTotal = $grandTotal;
                 $order->save();
-                return ;
+               
+                if($request->input('paymethod') == 'esewa'){
+                    $url = "https://uat.esewa.com.np/epay/main";
+                   // dd($url);
+$data =[
+    'amt'=> $totalamount,
+    'pdc'=> $shippingCharge,
+    'psc'=> 0,
+    'txAmt'=> $taxAmount,
+    'tAmt'=> $totalamount+$shippingCharge+$taxAmount,
+    'pid'=>$order->id,
+    'scd'=> 'EPAYTEST',
+    'su'=>'http://localhost:8000/esewa/success',
+    'fu'=>'http://localhost:8000/esewa/fail',
+];
+    $curl = curl_init($url);
+   // dd($curl);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    curl_close($curl);
+                }
+                else{
+                    dd('your order has been success with COD');
+                }
+
+              
             }
             
         else{
             abort(404) ;
         }
+    }
+
+    public function getSewa(){
+       return view('esewa.form');
     }
 
 }

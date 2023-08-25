@@ -11,7 +11,7 @@
                 <a  href="{{route('checkout', $tabledata->id)}}" > checkout</a> >
                  <br> <br>
                 <h3>Billing Adderess</h3><br>
-                <form action="{{route('PostCheckout', $tabledata->id)}}" method="POST">
+                <form action="{{route('PostCheckout')}}" method="POST">
                 @csrf
                 <div class="container">
                     <div class="row">

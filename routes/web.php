@@ -22,6 +22,16 @@ use App\Http\Controllers\SiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/esewa', [SiteController::class, 'getSewa'])->name('getSewa');
+Route::get('/esewa/success', function(){
+	dd('payment success');
+});
+
+Route::get('/esewa/fail', function(){
+	dd('payment fail');
+});
+
+
 Route::get('/', [SiteController::class, 'getSite'])->name('getSite');
 Route::get('/shopping', [SiteController::class, 'shopping'])->name('shopping');
 Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
