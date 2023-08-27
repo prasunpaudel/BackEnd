@@ -102,7 +102,7 @@
                                           @php
                                               $productinfo = App\Models\Product::where('id', $tabledata->product_id)->first();
                                               $itemCost = $tabledata->totalcost;
-                                              $subtotal = $itemCost;                                                           
+                                              $subtotal = $itemCost+$subtotal;                                                           
                                           @endphp
                                         @endforeach
                                                 <div>{{ $subtotal }}</div>
