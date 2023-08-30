@@ -96,8 +96,7 @@ class SiteController extends Controller
             $totalamount = Session::get('subtotal');
             $shippingCharge = Shipping::where('id', $request->input('state'))->value('charge');
             $taxAmount = Session::get('taxAmount');
-            $grandTotal = Session::get('grandTotal');
-            
+            $grandTotal = $totalamount+$shippingCharge+$taxAmount;
             $order = New Order;
             $firstName = $request->input('firstname');
             $lastName = $request->input('lastname');
@@ -118,43 +117,29 @@ class SiteController extends Controller
                 $order->taxAmount = $taxAmount;
                 $order->grandTotal = $grandTotal;
                 $order->save();
-               
-                if($request->input('paymethod') == 'esewa'){
-                    $url = "https://uat.esewa.com.np/epay/main";
-                   // dd($url);
-$data =[
-    'amt'=> $totalamount,
-    'pdc'=> $shippingCharge,
-    'psc'=> 0,
-    'txAmt'=> $taxAmount,
-    'tAmt'=> $totalamount+$shippingCharge+$taxAmount,
-    'pid'=>$order->id,
-    'scd'=> 'EPAYTEST',
-    'su'=>'http://localhost:8000/esewa/success',
-    'fu'=>'http://localhost:8000/esewa/fail',
-];
-    $curl = curl_init($url);
-   // dd($curl);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($curl);
-    curl_close($curl);
-                }
-                else{
-                    dd('your order has been success with COD');
-                }
-
-              
-            }
-            
-        else{
-            abort(404) ;
-        }
+                return redirect()->route('conformOrder', ['orderId' => $order->id]);
     }
+}
 
-    public function getSewa(){
-       return view('esewa.form');
-    }
+public function conformOrder($orderId){
+    // return $orderId;
 
+
+
+    if(Session::get('cartcode')){
+        $cartcode = Session::get('cartcode');
+    $data =[
+        // 'order' => Order::where('cartcode', $cartcode)->latest()->get()
+        'order' => Order::where('id', $orderId)->first(),
+    ];
+   return view('payment.form',$data);
+}
+else{
+    return hello;
+}
+}
+
+public function payment(){
+
+}
 }

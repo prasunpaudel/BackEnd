@@ -22,13 +22,13 @@ use App\Http\Controllers\SiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/esewa', [SiteController::class, 'getSewa'])->name('getSewa');
-Route::get('/esewa/success', function(){
-	dd('payment success');
+Route::get('/conformOrder/{orderId}', [SiteController::class, 'conformOrder'])->name('conformOrder');
+Route::get('/payment/success', function(){
+	return view('payment.sucess');
 });
 
-Route::get('/esewa/fail', function(){
-	dd('payment fail');
+Route::get('/payment/fail', function(){
+	return view('payment.fail');
 });
 
 
