@@ -11,6 +11,8 @@ use App\Models\Order;
 use Session;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use App\Mail\SampleMail;
+use Mail;
 
 
 class SiteController extends Controller
@@ -105,11 +107,7 @@ class SiteController extends Controller
             $order->state_id = $request->input('state');
                 $order->city = $request->input('city');
                 $order->payment_type = $request->input('paymethod');
-                if ($order->payment_type === 'esewa') {
-                    $order->payment_status = 'y'; // Assuming 'y' means paid for eSewa
-                } elseif ($order->payment_type === 'cod') {
-                    $order->payment_status = 'n'; // Assuming 'n' means not paid for COD
-                }
+                
                 $order->cartcode = Session::get('cartcode');
                 $order->zipcode = $request->input('zipcode');
                 $order->totalamount = $totalamount;
@@ -117,7 +115,18 @@ class SiteController extends Controller
                 $order->taxAmount = $taxAmount;
                 $order->grandTotal = $grandTotal;
                 $order->save();
+                if($request->paymethod == 'esewa' ){
                 return redirect()->route('conformOrder', ['orderId' => $order->id]);
+                }
+                else{
+                  
+                   $content = [
+                    'subject' => 'This is the mail subject',
+                    'body' => 'Name :'.$firstName.' '.$lastname.'<br />',
+                ];
+        
+                Mail::to($request->input('email'))->send(new SampleMail($content));
+                }
     }
 }
 
