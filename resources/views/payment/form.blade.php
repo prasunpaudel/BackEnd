@@ -70,7 +70,7 @@
         <input value="{{ $order->shippingamount }}" name="pdc" type="hidden"> {{-- delivery charge amount --}}
         <input value="EPAYTEST" name="scd" type="hidden"> {{-- merchant code which is provided by esewa --}}
         <input value="0987654321234567890" name="pid" type="hidden">
-        <input value="http://localhost:8000/payment/success" type="hidden" name="su">
+        <input value="http://localhost:8000/PostCheckout/email" type="hidden" name="su">
         <input value="http://localhost:8000/payment/fail" type="hidden" name="fu">
         <div class="modal-footer d-flex justify-content-center border-top-0 py-4">
             <button type="submit" class="btn btn-primary btn-lg mb-1" style="background-color: #35558a;">

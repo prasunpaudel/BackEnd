@@ -94,7 +94,6 @@ class SiteController extends Controller
     }
     public function PostCheckout(Request $request){
         if(Session::get('cartcode')){
-            
             $totalamount = Session::get('subtotal');
             $shippingCharge = Shipping::where('id', $request->input('state'))->value('charge');
             $taxAmount = Session::get('taxAmount');
@@ -107,7 +106,7 @@ class SiteController extends Controller
             $order->state_id = $request->input('state');
                 $order->city = $request->input('city');
                 $order->payment_type = $request->input('paymethod');
-                
+
                 $order->cartcode = Session::get('cartcode');
                 $order->zipcode = $request->input('zipcode');
                 $order->totalamount = $totalamount;
@@ -120,12 +119,7 @@ class SiteController extends Controller
                 }
                 else{
                   
-                   $content = [
-                    'subject' => 'This is the mail subject',
-                    'body' => 'Name :'.$firstName.' '.$lastname.'<br />',
-                ];
-        
-                Mail::to($request->input('email'))->send(new SampleMail($content));
+                  return redirect()->route('email');
                 }
     }
 }
@@ -144,11 +138,27 @@ public function conformOrder($orderId){
    return view('payment.form',$data);
 }
 else{
-    return hello;
+    abort (404);
 }
 }
+public function email(){
+    $code=Session::get('cartcode');
+    $email=Order::where('cartcode',Session::get('cartcode') )->pluck('email')->first();
+    $content = [
+        'subject' => 'the order has been placed',
+        'name' => Order::where('cartcode',Session::get('cartcode') )->pluck('name')->first(),
+        'date' => Order::where('cartcode',Session::get('cartcode') )->pluck('created_at')->first()->format('Y-m-d'),
+        'shippingAddress' => Order::where('cartcode',Session::get('cartcode') )->pluck('city')->first(),
+    ];
 
-public function payment(){
-
+    Mail::to($email)->send(new SampleMail($content));
+    return redirect()->route('order',$code);
+}
+public function trackOrder(){
+    return view('order.trackorder');
+}
+public function postTrackOrder(Request $request){
+   $code = $request->number;
+   return redirect()->route('order',$code);
 }
 }

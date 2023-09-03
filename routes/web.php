@@ -23,22 +23,25 @@ use App\Http\Controllers\SiteController;
 |
 */
 Route::get('/conformOrder/{orderId}', [SiteController::class, 'conformOrder'])->name('conformOrder');
-Route::get('/payment/success', function(){
-	return view('payment.sucess');
-});
+Route::get('/order/placed/{code}', function(){
+	return view('order.orderPlaced');
+})->name('order');
+Route::get('track/order',[SiteController::class, 'trackOrder'])->name('trackOrder');
+Route::get('post/track/order',[SiteController::class, 'postTrackOrder'])->name('postTrackOrder');
 
 Route::get('/payment/fail', function(){
 	return view('payment.fail');
 });
 
-
 Route::get('/', [SiteController::class, 'getSite'])->name('getSite');
+
 Route::get('/shopping', [SiteController::class, 'shopping'])->name('shopping');
 Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
 Route::get('/carts', [SiteController::class, 'getCart'])->name('getCart');
 Route::get('/carts/delete/{cart}', [SiteController::class, 'getdeletecart'])->name('getdeletecart');
 Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
 Route::post('/PostCheckout', [SiteController::class, 'PostCheckout'])->name('PostCheckout');
+Route::get('/PostCheckout/email', [SiteController::class, 'email'])->name('email');
 Route::get('/Billing', [SiteController::class, 'Billing'])->name('Billing');
 
 Route::get('/catagory', [CatagoryController::class, 'getAddCatagory'])->name('catagory');
