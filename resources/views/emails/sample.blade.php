@@ -11,7 +11,7 @@
     <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #ffffff; max-width: 600px; margin: 0 auto;">
         <tr>
             <td align="center" style="padding: 40px 0; text-align: center;">
-                <img src="{{ asset('site/images/logo.png') }}" alt="Your Logo" width="150">
+                <img src="http://localhost:8000/site/images/logo.png" alt="Your Logo" width="150">
             </td>
         </tr>
         <tr>
@@ -26,7 +26,11 @@
                     </tr>
                     <tr>
                         <td><strong>Order Date:</strong></td>
-                        <td> {!! $content['date'] !!}</td>
+                        {{-- <td> {!! $content['date'] !!}</td> --}}
+                        @php
+                            use Carbon\Carbon;
+                        @endphp
+                        <td>{{ Carbon::parse($content['date'])->addDays(2)->format('Y-m-d') }}</td>
                     </tr>
                     <tr>
                         <td><strong>Shipping Address:</strong></td>
