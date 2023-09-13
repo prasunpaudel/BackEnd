@@ -1,68 +1,53 @@
 @extends('pages.template')
 @section('content')
 <!-- banner section start -->
-        <div class="banner_section layout_padding">
-         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-sm-6">
+<div class="banner_section layout_padding">
+   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+       <div class="carousel-inner">
+           <div class="carousel-item active">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-sm-6">
                            <h1 class="banner_taital">Beauty <br>Kit</h1>
-                           <p class="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                           <p class="banner_text">Welcome to our webpage. Please feel free to buy our products, there are varieties of choices. Make sure to shop well.</p>
                            <div class="read_bt"><a href="#">Buy Now</a></div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="banner_img"><img src="{{asset('site/images/banner-img.png')}}"></div>
-                        </div>
-                     </div>
-                  </div>
+                       </div>
+                       <div class="col-sm-6">
+                           <div class="banner_img"><img src="{{ asset('site/images/banner-img.png') }}"></div>
+                       </div>
+                   </div>
                </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-sm-6">
-                           <h1 class="banner_taital">Beauty <br>Kit</h1>
-                           <p class="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                           <div class="read_bt"><a href="#">Buy Now</a></div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="banner_img"><img src="{{asset('site/images/banner-img.png')}}"></div>
-                        </div>
-                     </div>
-                  </div>
+           </div>
+           @foreach($products as $product)
+           <div class="carousel-item">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-sm-6">
+                           <h1 class="banner_taital">{{ $product->title }}</h1>
+                           <p class="banner_text">{{ $product->detail }}</p>
+                           <div class="read_bt"><a href="{{ route('getAddCart', $product->id) }}">Buy Now</a></div>
+                       </div>
+                       <div class="col-sm-6">
+                           <div class="banner_img"><img src="/site/uploads/AddProduct/{{ $product->photo }}"></div>
+                       </div>
+                   </div>
                </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-sm-6">
-                           <h1 class="banner_taital">Beauty <br>Kit</h1>
-                           <p class="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                           <div class="read_bt"><a href="#">Buy Now</a></div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="banner_img"><img src="{{asset('site/images/banner-img.png')}}"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-sm-6">
-                           <h1 class="banner_taital">Beauty <br>Kit</h1>
-                           <p class="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                           <div class="read_bt"><a href="#">Buy Now</a></div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="banner_img"><img src="{{asset('images/banner-img.png')}}"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-        </div>
+           </div>
+           @endforeach
+       </div>
+       
+       <!-- Add previous and next buttons -->
+       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="sr-only">Previous</span>
+       </a>
+       <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="sr-only">Next</span>
+       </a>
+   </div>
+</div>
+
       <!-- banner section end -->
       <!-- product section start -->
       <div class="product_section layout_padding">
